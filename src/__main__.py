@@ -9,7 +9,7 @@ load_dotenv()
 
 
 def main() -> None:
-    bot = Bot(APIClient(env["API_TOKEN"], kv_ns="todo"), command_prefix="td!")
+    bot = Bot(APIClient(env["API_TOKEN"], kv_ns="todo"), command_prefix="td!", help_command=None)
     bot.load_extensions([
         "src.exts.ping",
         "src.exts.todo",
