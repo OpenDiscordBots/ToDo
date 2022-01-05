@@ -4,7 +4,7 @@ A simple bot to keep track of things you need to do.
 
 ## Installation
 
-You will need to install `poetry` to run this bot locally for levelopment, but running in docker is preferred for production deployment.
+You will need to install `poetry` to run this bot locally for development, but running in docker is preferred for production deployment.
 
 Poetry can be installed using the following command:
 
