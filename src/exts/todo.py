@@ -1,4 +1,5 @@
 from json import dumps
+from random import choice
 
 from disnake import ApplicationCommandInteraction
 from disnake.ext.commands import Cog, Param, slash_command
@@ -67,6 +68,20 @@ class Todo(Cog):
         self._todos[f"{ctx.author.id}"] = todos
 
         await ctx.send(f"Successfully marked your todo task as completed!", ephemeral=True)
+
+    @slash_command(name="pick")
+    async def pick(
+        self,
+        ctx: ApplicationCommandInteraction,
+    ) -> None:
+        """Pick a todo task at random."""
+
+        if not (todos := self._todos.get(f"{ctx.author.id}")):
+            todos = (await self.bot.api.kv_get(f"{ctx.author.id}")) or []
+
+        todo = choice(todos)
+
+        await ctx.send(f"Here's a random task you need to do:\n\n{todo}", ephemeral=True)
 
 
 def setup(bot: Bot) -> None:
