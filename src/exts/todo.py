@@ -79,6 +79,10 @@ class Todo(Cog):
         if not (todos := self._todos.get(f"{ctx.author.id}")):
             todos = (await self.bot.api.kv_get(f"{ctx.author.id}")) or []
 
+        if not todos:
+            await ctx.send(f"No todos to pick from!", ephemeral=True)
+            return
+
         todo = choice(todos)
 
         await ctx.send(f"Here's a random task you need to do:\n\n{todo}", ephemeral=True)
